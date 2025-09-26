@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Indo Science Academy — HTML/CSS/JS Export</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #0b1220;
+            --muted: #5b6b7b;
+            --primary: #1463ff;
+            --primary-600: #0f4fe0;
+            --ring: #1463ff;
+            --border: #e3e8ef;
+            --secondary: #f1f5ff;
+            --yellow: #fde047;
+            --radius: 12px;
+            --container: 1200px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            color: var(--fg);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: var(--container);
+            margin-inline: auto;
+            padding: 0 24px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .6rem 1rem;
+            border-radius: 10px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            border: 1px solid var(--primary);
+        }
+
+        .btn.secondary {
+            background: #fff;
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            background: var(--primary-600);
+            border-color: var(--primary-600)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: saturate(1.2) blur(4px)
+        }
+
+        .topbar {
+            background: linear-gradient(90deg, var(--primary) 0%, #0f4fe0 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            position: relative
+        }
+
+        .topbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3) 50%, transparent)
+        }
+
+        .topbar a {
+            color: #fff;
+            text-decoration: underline;
+            transition: opacity 0.2s ease
+        }
+
+        .topbar a:hover {
+            opacity: 0.8
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            gap: 16px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 20px;
+            transition: transform 0.2s ease
+        }
+
+        .brand:hover {
+            transform: scale(1.02)
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), #0f4fe0);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            box-shadow: 0 2px 8px rgba(20, 99, 255, 0.3)
+        }
+
+        .menu {
+            display: flex;
+            gap: 22px;
+            color: #111827;
+            font-size: 14px
+        }
+
+        .menu a {
+            transition: color 0.2s ease, transform 0.2s ease
+        }
+
+        .menu a:hover {
+            color: var(--primary);
+            transform: translateY(-1px)
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px
+        }
+
+        .hero {
+            padding: 40px 0;
+            position: relative
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(20, 99, 255, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(20, 99, 255, 0.05) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(253, 224, 71, 0.05) 0%, transparent 50%);
+            pointer-events: none
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, .08);
+            position: relative;
+            z-index: 1
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 5px 18px;
+            background: linear-gradient(90deg, #eaf4ff, #e8f1ff 50%, #e9fff4)
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: #fff;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 12px;
+            border: 1px solid rgba(20, 99, 255, .2);
+            color: var(--primary)
+        }
+
+        .badge {
+            background: var(--yellow);
+            border-radius: 7px;
+            padding: 3px 8px;
+            font-weight: 800
+        }
+
+        .slider {
+            overflow: hidden;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            /* margin: 0 18px 18px; */
+            border: 1px solid var(--border);
+        }
+
+        .track {
+            display: flex;
+            transition: transform .7s ease-out;
+            height: 350px;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            height: 100%;
+        }
+
+        .slide-figure {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 0;
+        }
+
+        .air {
+            position: absolute;
+            left: 12px;
+            top: 7px;
+            background: var(--yellow);
+            border-radius: 8px;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+            z-index: 2
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            padding: 5px 0 5px
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #cbd5e1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease
+        }
+
+        .dot:hover {
+            background: #94a3b8
+        }
+
+        .dot[aria-current="true"] {
+            background: var(--primary);
+            transform: scale(1.2)
+        }
+
+        .section {
+            padding: 48px 0;
+            position: relative
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(20, 99, 255, 0.02) 0%, rgba(20, 99, 255, 0.05) 50%, rgba(20, 99, 255, 0.02) 100%);
+            pointer-events: none
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin: 0 0 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .grid {
+            display: grid;
+            gap: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        @media(min-width:768px) {
+            .grid.cols-3 {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        .course-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            background: #fff;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(20, 99, 255, 0.03), rgba(20, 99, 255, 0.01));
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.2s ease
+        }
+
+        .course-card:hover::before {
+            opacity: 1
+        }
+
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 6, 23, 0.15)
+        }
+
+        .course-card .thumb {
+            width: 72px;
+            height: 72px;
+            border-radius: 12px;
+            background: var(--secondary);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-opacity='0.08' fill='%23ffffff'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243L8.2 0H5.373zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657l1.415 1.414L13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.242 0h3.414zM22.344 0L13.03 9.314l1.414 1.414L25.758 0h-3.414zM32 0l12.142 12.142-1.414 1.414L30.586 1.414 32 0zm-9.9 0l4.243 4.243-1.414 1.414L20.686 1.414 22.1 0zm2.828 0l2.83 2.828L25.344 4.24 22.516 1.413 24.928 0z'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        footer .brand {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        footer .logo {
+            background: linear-gradient(135deg, var(--primary), #60a5fa);
+            box-shadow: 0 4px 12px rgba(20, 99, 255, 0.4);
+        }
+
+        footer .grid {
+            grid-template-columns: repeat(1, 1fr);
+            position: relative;
+            z-index: 1;
+            gap: 32px;
+        }
+
+        footer h4 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 16px;
+            position: relative;
+        }
+
+        footer h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            padding: 6px 0;
+            color: #94a3b8;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        footer ul li:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        footer .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        footer .contact-info li:before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        footer .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        @media(min-width:900px) {
+            footer .grid {
+                grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            }
+        }
+
+        footer small {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Trending Courses Styles */
+        .trending-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary)
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--secondary);
+            color: var(--primary)
+        }
+
+        .trending-courses {
+            display: grid;
+            gap: 20px
+        }
+
+        @media(min-width:768px) {
+            .trending-courses {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        .trending-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease
+        }
+
+        .trending-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(2, 6, 23, 0.12)
+        }
+
+        .trending-card h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        .trending-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        /* Testimonials Styles */
+        .testimonials {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 24px;
+            padding: 40px 24px;
+            margin-top: 24px
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 32px
+        }
+
+        .testimonial-grid {
+            display: grid;
+            gap: 24px
+        }
+
+        @media(min-width:768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(min-width:1200px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(4, 1fr)
+            }
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(2, 6, 23, 0.08);
+            position: relative;
+            transition: all 0.3s ease
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 6, 23, 0.12)
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            font-weight: 900
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.6;
+            margin: 0 0 16px;
+            color: var(--fg)
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0
+        }
+
+        /* Responsive adjustments for slider */
+        @media (max-width: 768px) {
+            .track {
+                height: 250px;
+            }
+
+            .slider {
+                margin: 0 12px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .track {
+                height: 200px;
+            }
+
+            .air {
+                font-size: 10px;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="topbar">
+            <div class="container"
+                style="padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div>India's biggest talent exam is live – Register for ISA Talent Hunt</div>
+                <a href="#">Register now</a>
+            </div>
+        </div>
+        <div class="container nav">
+            <a class="brand" href="#">
+                <span class="logo">ISA</span>
+                <span>Indo Science Academy</span>
+            </a>
+            <nav class="menu" aria-label="Primary">
+                <a href="#courses">Courses</a>
+                <a href="#">Test Series</a>
+                <a href="#">Classroom</a>
+                <a href="#">Results</a>
+                <a href="#">Study Materials</a>
+                <a href="#">Scholarships</a>
+                <a href="#">Store</a>
+            </nav>
+            <div class="actions">
+                <a class="btn secondary" href="#">Login</a>
+                <a class="btn" href="#">Enquire Now</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <br>
+            <br>
+            <div class="container">
+                <div class="card">
+                    <div class="hero-top">
+                        <span class="pill"><span
+                                style="width:8px;height:8px;border-radius:999px;background:var(--primary);"></span> ISA
+                            Online Test Series</span>
+                        <div style="display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px">
+                            <span>Next phase starts</span>
+                            <span class="badge">28th Sept.</span>
+                            <a class="btn" href="#">Know More</a>
+                        </div>
+                    </div>
+                    <div class="slider" aria-roledescription="carousel">
+                        <div class="track" id="sliderTrack">
+                            <div class="slide">
+                                <figure class="slide-figure"><img
+                                        src="images/happy-african-american-student-raising-600nw-1937721487.webp"
+                                        alt="Happy student celebrating success" />
+                                    <figcaption class="air">AIR 1</figcaption>
+                                </figure>
+                            </div>
+                            <div class="slide">
+                                <figure class="slide-figure"><img
+                                        src="images/hero_feature_BTS_photo_iStock_1463406555_skynesher.webp"
+                                        alt="Students studying together" />
+                                    <figcaption class="air">AIR 3</figcaption>
+                                </figure>
+                            </div>
+                            <div class="slide">
+                                <figure class="slide-figure"><img src="images/iStock-507009337_864x486px.jpg"
+                                        alt="Educational learning environment" />
+                                    <figcaption class="air">AIR 5</figcaption>
+                                </figure>
+                            </div>
+                            <div class="slide">
+                                <figure class="slide-figure"><img
+                                        src="images/students-listening-female-teacher-classroom-260nw-778983088.webp"
+                                        alt="Students attentively listening to teacher in classroom" />
+                                    <figcaption class="air">AIR 7</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dots" role="tablist" aria-label="Slides">
+                <button class="dot" role="tab" aria-selected="true" aria-current="true"></button>
+                <button class="dot" role="tab"></button>
+                <button class="dot" role="tab"></button>
+                <button class="dot" role="tab"></button>
+            </div>
+        </section>
+
+        <section class="section" id="courses">
+            <div class="container">
+                <h2>Pick the right course for you</h2>
+                <div class="grid cols-3">
+                    <article class="course-card">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=200&h=200&q=80"
+                                alt="NEET Biology"
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" /></div>
+                        <div>
+                            <h3 style="margin:0 0 6px;font-size:18px">NEET Courses</h3>
+                            <p class="muted" style="margin:0 0 6px">Class XI–XII & droppers programs</p>
+                            <a class="btn secondary" href="#">View Courses →</a>
+                        </div>
+                    </article>
+                    <article class="course-card">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=200&h=200&q=80"
+                                alt="JEE Engineering"
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" /></div>
+                        <div>
+                            <h3 style="margin:0 0 6px;font-size:18px">JEE Courses</h3>
+                            <p class="muted" style="margin:0 0 6px">Mains + Advanced streams</p>
+                            <a class="btn secondary" href="#">View Courses →</a>
+                        </div>
+                    </article>
+                    <article class="course-card">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=200&h=200&q=80"
+                                alt="Foundation Mathematics"
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" /></div>
+                        <div>
+                            <h3 style="margin:0 0 6px;font-size:18px">Class 6–10</h3>
+                            <p class="muted" style="margin:0 0 6px">Foundation & Olympiads</p>
+                            <a class="btn secondary" href="#">View Courses →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Trending Courses</h2>
+                <div class="trending-tabs">
+                    <button class="tab active" data-category="neet">NEET</button>
+                    <button class="tab" data-category="jee">JEE</button>
+                    <button class="tab" data-category="foundation">Class 6–10</button>
+                </div>
+                <div class="trending-courses" id="trendingCourses">
+                    <article class="trending-card">
+                        <h3>NEET Crash Course</h3>
+                        <p>Comprehensive classes, doubt solving and weekly tests.</p>
+                        <a class="btn" href="#" style="margin-top: 12px;">Enroll Now</a>
+                    </article>
+                    <article class="trending-card">
+                        <h3>NEET Dropper Compact</h3>
+                        <p>Comprehensive classes, doubt solving and weekly tests.</p>
+                        <a class="btn" href="#" style="margin-top: 12px;">Enroll Now</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="testimonials">
+                    <h2>Testimonials from our students</h2>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">LIVE classes kept me focused and the constant doubt resolution
+                                built my confidence.</p>
+                            <p class="testimonial-author">— Aritro Ray</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Improvement Book and analytics helped me track mistakes and
+                                improve every week.</p>
+                            <p class="testimonial-author">— Arka Banerjee</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Staying close to family with online classes while cracking NEET
+                                was the best decision.</p>
+                            <p class="testimonial-author">— Tanmoy Jagga</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">In-depth analysis and strong support helped me stay disciplined
+                                and score big.</p>
+                            <p class="testimonial-author">— Debarghya Bose</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container section">
+            <div class="grid">
+                <div>
+                    <div class="brand"><span class="logo">ISA</span> Indo Science Academy</div>
+                    <p style="max-width:460px; color: #94a3b8; line-height: 1.6; margin: 0;">Premier coaching for JEE, NEET and Foundations with results-driven pedagogy and India's best mentors. Building tomorrow's leaders through excellence in education.</p>
+                </div>
+                <div>
+                    <h4>Programs</h4>
+                    <ul>
+                        <li>JEE Main & Advanced</li>
+                        <li>NEET Preparation</li>
+                        <li>Class 6–10 Foundation</li>
+                        <li>Online Test Series</li>
+                        <li>Crash Courses</li>
+                        <li>Olympiad Training</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li>About Us</li>
+                        <li>Success Stories</li>
+                        <li>Faculty</li>
+                        <li>Careers</li>
+                        <li>News & Events</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get in Touch</h4>
+                    <ul class="contact-info">
+                        <li>hello@indoscience.academy</li>
+                        <li>+91 98765 43210</li>
+                        <li>New Delhi, India</li>
+                        <li>Mon - Sun: 9 AM - 9 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <small>© <span id="year"></span> Indo Science Academy. All rights reserved. | Privacy Policy | Terms of Service</small>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple slider logic (single image per slide, auto-scroll RTL)
+        const track = document.getElementById('sliderTrack');
+        const dots = Array.from(document.querySelectorAll('.dot'));
+        const total = dots.length;
+        let index = 0;
+        function goTo(i) {
+            index = (i + total) % total;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach((d, di) => { d.setAttribute('aria-current', di === index ? 'true' : 'false'); d.setAttribute('aria-selected', di === index); });
+        }
+        dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+        setInterval(() => goTo(index + 1), 3000);
+        goTo(0);
+
+        // Trending courses tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const coursesContainer = document.getElementById('trendingCourses');
+
+        const courseData = {
+            neet: [
+                { title: 'NEET Crash Course', description: 'Comprehensive classes, doubt solving and weekly tests.' },
+                { title: 'NEET Dropper Compact', description: 'Comprehensive classes, doubt solving and weekly tests.' },
+            ],
+            jee: [
+                { title: 'JEE Main + Advanced', description: 'Complete preparation with mock tests and personalized mentoring.' },
+                { title: 'JEE Crash Course', description: 'Intensive preparation for JEE Main with expert faculty guidance.' },
+            ],
+            foundation: [
+                { title: 'Class 6-10 Foundation', description: 'Strong foundation building with conceptual clarity and practice.' },
+                { title: 'Olympiad Preparation', description: 'Advanced problem solving for various Olympiad competitions.' },
+            ]
+        };
+
+        function renderCourses(category) {
+            const courses = courseData[category];
+            coursesContainer.innerHTML = courses.map(course => `
+          <article class="trending-card">
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <a class="btn" href="#" style="margin-top: 12px;">Enroll Now</a>
+          </article>
+        `).join('');
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderCourses(tab.dataset.category);
+            });
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
