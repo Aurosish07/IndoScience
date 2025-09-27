@@ -120,7 +120,8 @@
             align-items: center;
             justify-content: space-between;
             padding: 18px 0;
-            gap: 16px
+            gap: 16px;
+            position: relative
         }
 
         .brand {
@@ -129,7 +130,8 @@
             gap: 10px;
             font-weight: 800;
             font-size: 20px;
-            transition: transform 0.2s ease
+            transition: transform 0.2s ease;
+            z-index: 1000
         }
 
         .brand:hover {
@@ -152,11 +154,14 @@
             display: flex;
             gap: 22px;
             color: #111827;
-            font-size: 14px
+            font-size: 14px;
+            transition: all 0.3s ease
         }
 
         .menu a {
-            transition: color 0.2s ease, transform 0.2s ease
+            transition: color 0.2s ease, transform 0.2s ease;
+            padding: 8px 0;
+            position: relative
         }
 
         .menu a:hover {
@@ -166,7 +171,152 @@
 
         .actions {
             display: flex;
-            gap: 10px
+            gap: 10px;
+            z-index: 1000
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            gap: 4px
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--fg);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px)
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px)
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .menu {
+                gap: 16px;
+                font-size: 13px
+            }
+            
+            .brand {
+                font-size: 18px
+            }
+            
+            .actions .btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 13px
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex
+            }
+
+            .menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: #fff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                font-size: 18px;
+                box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1)
+            }
+
+            .menu.active {
+                transform: translateX(0)
+            }
+
+            .menu a {
+                padding: 16px 0;
+                font-weight: 600;
+                font-size: 20px;
+                color: var(--fg)
+            }
+
+            .menu a:hover {
+                color: var(--primary);
+                transform: scale(1.05)
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: 8px;
+                position: fixed;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease
+            }
+
+            .actions.mobile-visible {
+                opacity: 1;
+                pointer-events: auto
+            }
+
+            .nav {
+                padding: 12px 0
+            }
+
+            .brand {
+                font-size: 16px
+            }
+
+            .brand .logo {
+                width: 32px;
+                height: 32px
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar {
+                font-size: 11px;
+                padding: 6px 0
+            }
+            
+            .topbar .container {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center
+            }
+            
+            .brand {
+                font-size: 15px;
+                gap: 8px
+            }
+            
+            .brand .logo {
+                width: 28px;
+                height: 28px;
+                font-size: 12px
+            }
         }
 
         .hero {
@@ -227,14 +377,14 @@
             overflow: hidden;
             border-bottom-left-radius: 16px;
             border-bottom-right-radius: 16px;
-            /* margin: 0 18px 18px; */
             border: 1px solid var(--border);
+            position: relative
         }
 
         .track {
             display: flex;
             transition: transform .7s ease-out;
-            height: 350px;
+            height: 350px
         }
 
         .slide {
@@ -261,26 +411,28 @@
         .air {
             position: absolute;
             left: 12px;
-            top: 7px;
+            top: 12px;
             background: var(--yellow);
             border-radius: 8px;
-            padding: 3px 8px;
+            padding: 6px 12px;
             font-size: 12px;
             font-weight: 800;
             box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
-            z-index: 2
+            z-index: 2;
+            transition: all 0.2s ease
         }
 
         .dots {
             display: flex;
             gap: 8px;
             justify-content: center;
-            padding: 5px 0 5px
+            padding: 12px 0 8px;
+            margin-top: 4px
         }
 
         .dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 999px;
             background: #cbd5e1;
             border: none;
@@ -289,12 +441,155 @@
         }
 
         .dot:hover {
-            background: #94a3b8
+            background: #94a3b8;
+            transform: scale(1.1)
         }
 
         .dot[aria-current="true"] {
             background: var(--primary);
-            transform: scale(1.2)
+            transform: scale(1.3);
+            box-shadow: 0 2px 8px rgba(20, 99, 255, 0.4)
+        }
+
+        /* Hero card responsive improvements */
+        .hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 8px 18px;
+            background: linear-gradient(90deg, #eaf4ff, #e8f1ff 50%, #e9fff4);
+            flex-wrap: wrap
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: #fff;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 12px;
+            border: 1px solid rgba(20, 99, 255, .2);
+            color: var(--primary);
+            white-space: nowrap
+        }
+
+        .badge {
+            background: var(--yellow);
+            border-radius: 7px;
+            padding: 3px 8px;
+            font-weight: 800;
+            white-space: nowrap
+        }
+
+        /* Mobile optimizations for carousel */
+        @media (max-width: 768px) {
+            .track {
+                height: 280px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 18px;
+                text-align: center
+            }
+
+            .hero-top > div {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px
+            }
+
+            .pill {
+                font-size: 11px;
+                padding: 5px 8px
+            }
+
+            .badge {
+                padding: 2px 6px;
+                font-size: 11px
+            }
+
+            .air {
+                left: 8px;
+                top: 8px;
+                padding: 4px 8px;
+                font-size: 11px
+            }
+
+            .dots {
+                gap: 10px;
+                padding: 16px 0 12px
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px
+            }
+        }
+
+        @media (max-width: 480px) {
+            .track {
+                height: 240px;
+            }
+
+            .hero-top {
+                padding: 10px 12px;
+                gap: 10px
+            }
+
+            .hero-top > div {
+                font-size: 12px
+            }
+
+            .pill {
+                font-size: 10px;
+                padding: 4px 6px;
+                gap: 6px
+            }
+
+            .pill span {
+                width: 6px;
+                height: 6px
+            }
+
+            .badge {
+                font-size: 10px;
+                padding: 2px 5px
+            }
+
+            .air {
+                left: 6px;
+                top: 6px;
+                padding: 3px 6px;
+                font-size: 10px;
+                border-radius: 6px
+            }
+
+            .btn {
+                font-size: 12px;
+                padding: 0.4rem 0.6rem
+            }
+
+            .card {
+                margin: 0 12px
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .dot {
+                width: 12px;
+                height: 12px;
+                margin: 2px
+            }
+            
+            .dots {
+                gap: 12px
+            }
         }
 
         .section {
@@ -630,28 +925,6 @@
             color: var(--primary);
             margin: 0
         }
-
-        /* Responsive adjustments for slider */
-        @media (max-width: 768px) {
-            .track {
-                height: 250px;
-            }
-
-            .slider {
-                margin: 0 12px 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .track {
-                height: 200px;
-            }
-
-            .air {
-                font-size: 10px;
-                padding: 2px 6px;
-            }
-        }
     </style>
 </head>
 
@@ -669,7 +942,7 @@
                 <span class="logo">ISA</span>
                 <span>Indo Science Academy</span>
             </a>
-            <nav class="menu" aria-label="Primary">
+            <nav class="menu" aria-label="Primary" id="mobileMenu">
                 <a href="#courses">Courses</a>
                 <a href="#">Test Series</a>
                 <a href="#">Classroom</a>
@@ -678,10 +951,15 @@
                 <a href="#">Scholarships</a>
                 <a href="#">Store</a>
             </nav>
-            <div class="actions">
+            <div class="actions" id="mobileActions">
                 <a class="btn secondary" href="#">Login</a>
                 <a class="btn" href="#">Enquire Now</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
     
@@ -883,18 +1161,102 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileActions = document.getElementById('mobileActions');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileActions.classList.toggle('mobile-visible');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on menu links
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileActions.classList.remove('mobile-visible');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileActions.classList.remove('mobile-visible');
+                document.body.style.overflow = '';
+            }
+        });
+
         // Simple slider logic (single image per slide, auto-scroll RTL)
         const track = document.getElementById('sliderTrack');
         const dots = Array.from(document.querySelectorAll('.dot'));
         const total = dots.length;
         let index = 0;
+        
         function goTo(i) {
             index = (i + total) % total;
             track.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach((d, di) => { d.setAttribute('aria-current', di === index ? 'true' : 'false'); d.setAttribute('aria-selected', di === index); });
+            dots.forEach((d, di) => { 
+                d.setAttribute('aria-current', di === index ? 'true' : 'false'); 
+                d.setAttribute('aria-selected', di === index); 
+            });
         }
+        
         dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-        setInterval(() => goTo(index + 1), 3000);
+        
+        // Auto-advance slider
+        let sliderInterval = setInterval(() => goTo(index + 1), 4000);
+        
+        // Pause auto-advance on hover
+        track.addEventListener('mouseenter', () => clearInterval(sliderInterval));
+        track.addEventListener('mouseleave', () => {
+            sliderInterval = setInterval(() => goTo(index + 1), 4000);
+        });
+        
+        // Touch support for mobile carousel
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            clearInterval(sliderInterval);
+        }, { passive: true });
+        
+        track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        track.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const deltaX = startX - currentX;
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    goTo(index + 1);
+                } else {
+                    goTo(index - 1);
+                }
+            }
+            
+            sliderInterval = setInterval(() => goTo(index + 1), 4000);
+        }, { passive: true });
+        
         goTo(0);
 
         // Trending courses tab functionality
